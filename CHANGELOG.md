@@ -1,3 +1,23 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/mbamobi/http/compare/v2.2.0...v3.0.0) (2017-04-07)
+
+
+
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/mbamobi/http/compare/v2.2.0...v3.0.0) (2017-04-07)
+
+
+
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/mbamobi/http/compare/v2.1.0...v2.2.0) (2017-04-06)
+
+
+### Bug Fixes
+
+* **http:** clean options only event specify ([78463b7](https://github.com/mbamobi/http/commit/78463b7))
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/mbamobi/http/compare/v2.1.0...v2.2.0) (2017-04-06)
 
