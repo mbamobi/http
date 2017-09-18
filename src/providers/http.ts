@@ -152,7 +152,8 @@ export class Http {
         .timeoutWith(options.timeout, Observable.defer(() => {
           let err = new TimeoutException();
           this.events.publish(HttpEvents.POST_REQUEST_ERROR, err);
-          return Observable.throw(err);
+          Observable.throw(err);
+          throw err;
         }));
     }
 
