@@ -129,16 +129,16 @@ export class HttpPluginConnection implements Connection {
       }).catch((error: any) => {
         const status = error.status;
         objectDebug.status     = status;
-        objectDebug.body       = error.data;
-        objectDebug.statusText = error.error;
+        objectDebug.body       = error.error;
+        objectDebug.statusText = '';
 
         console.log('Debug error: ', objectDebug);
 
         const responseOptions = new ResponseOptions({
           status: status,
-          body: error.data,
+          body: error.error,
           type: ResponseType.Error,
-          statusText: error.error
+          statusText: ''
         });
         const response = new Response(responseOptions);
         let exception;
