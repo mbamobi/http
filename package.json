@@ -32,15 +32,15 @@
     "CHANGELOG.md"
   ],
   "devDependencies": {
-    "@angular/common": "4.0.0",
-    "@angular/compiler": "4.0.0",
-    "@angular/compiler-cli": "4.0.0",
-    "@angular/core": "4.0.0",
-    "@angular/forms": "4.0.0",
-    "@angular/http": "4.0.0",
-    "@angular/platform-browser": "4.0.0",
-    "@angular/platform-browser-dynamic": "4.0.0",
-    "@angular/platform-server": "4.0.0",
+    "@angular/common": "4.1.2",
+    "@angular/compiler": "4.1.2",
+    "@angular/compiler-cli": "4.1.2",
+    "@angular/core": "4.1.2",
+    "@angular/forms": "4.1.2",
+    "@angular/http": "4.1.2",
+    "@angular/platform-browser": "4.1.2",
+    "@angular/platform-browser-dynamic": "4.1.2",
+    "@angular/platform-server": "4.1.2",
     "@mbamobi/configuration": "^3.0.0",
     "@mbamobi/url-resolver": "^3.0.0",
     "@ramonornela/jsonpath": "0.2.10",
@@ -61,7 +61,7 @@
     "tslint-eslint-rules": "3.2.3",
     "tslint-ionic-rules": "0.0.8",
     "typedoc": "^0.5.1",
-    "typescript": "~2.2.1",
+    "typescript": "^2.3.4",
     "zone.js": "0.8.4"
   },
   "peerDependencies": {

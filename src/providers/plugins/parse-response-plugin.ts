@@ -1,9 +1,9 @@
-import { Injectable, OpaqueToken } from '@angular/core';
+import { Injectable, InjectionToken } from '@angular/core';
 import { PostRequestPlugin } from './plugin';
 import { PluginBase } from './plugin-base';
 import { ParseResponse } from './response/parse-response';
 
-export const ParseResponseToken = new OpaqueToken('PARSE_RESPONSE');
+export const ParseResponseToken = new InjectionToken('PARSE_RESPONSE');
 
 @Injectable()
 export class ParseResponsePlugin extends PluginBase implements PostRequestPlugin {
