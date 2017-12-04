@@ -1,3 +1,8 @@
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/mbamobi/http/compare/5.0.0...4.0.0) (2017-12-04)
+
+Suporte Angular 5.
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/mbamobi/http/compare/v2.2.0...v3.0.0) (2017-04-07)
 
