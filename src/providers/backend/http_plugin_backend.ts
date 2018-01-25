@@ -57,9 +57,12 @@ export class HttpPluginConnection implements Connection {
           promise = pluginHttp.get(req.url, {}, headersSerialize);
           break;
         case 'POST':
-          parameters = this.transformParemeters();
-          if (headers.get('content-type') === 'application/json') {
+          let contentType = headers.get('content-type');
+          parameters = this.transformParemeters(contentType);
+          if (contentType === 'application/json') {
             pluginHttp.setDataSerializer('json');
+          } else if ((contentType || '') === 'application/jwt') {
+            pluginHttp.setDataSerializer('text');
           } else {
             pluginHttp.setDataSerializer('urlencoded');
           }
@@ -158,7 +161,7 @@ export class HttpPluginConnection implements Connection {
     });
   }
 
-  transformParemeters(): { [key: string]: any } | any {
+  transformParemeters(contentType?: string): { [key: string]: any } | any {
     let paramsResult: { [key: string]: any } = {};
 
     // transform query string in object ex: x=1&y=2 = {x: 1, y: 2}
@@ -169,10 +172,15 @@ export class HttpPluginConnection implements Connection {
       } catch (e) {
         return body;
       }
-    }
-
-    if (typeof body === 'string') {
-      return body;
+    } else if (typeof body === 'string') {
+      if (contentType === 'application/json') {
+        try {
+            return JSON.parse(body);
+        }
+        catch (e) {
+            return body;
+        }
+      } else return body;
     }
 
     try {
