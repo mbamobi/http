@@ -15,6 +15,7 @@
       "es2015",
       "dom"
     ],
+    "skipLibCheck": true,
     "types" : ["jasmine"]
   },
   "include": [

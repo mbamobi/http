@@ -1,8 +1,8 @@
-import { Injectable, OpaqueToken, Optional } from '@angular/core';
 import { HttpEvents } from '../backend/utils';
+import { Injectable, InjectionToken, Optional } from '@angular/core';
 import { Plugin } from './plugin';
 
-export const HttpPluginsToken = new OpaqueToken('HTTP_PLUGINS');
+export const HttpPluginsToken = new InjectionToken('HTTP_PLUGINS');
 
 const EventsMethods = [ 'preRequest', 'postRequest', 'postRequestSuccess', 'postRequestError' ];
 

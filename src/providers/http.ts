@@ -1,4 +1,4 @@
-import { Inject, Injectable, OpaqueToken, Optional } from '@angular/core';
+import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { Response } from '@angular/http';
 import { Config } from '@mbamobi/configuration';
 import { Request } from '@mbamobi/url-resolver';
@@ -15,8 +15,8 @@ import { Mapper } from './mapper';
 import { Options } from './options';
 import { Plugin, Plugins } from './plugins';
 
-export const RequestDefaultOptionsToken = new OpaqueToken('REQUESTDEFAULTOPTIONSTOKEN');
-export const DefaultOptionsToken = new OpaqueToken('DEFAULTOPTIONSTOKEN');
+export const RequestDefaultOptionsToken = new InjectionToken('REQUESTDEFAULTOPTIONSTOKEN');
+export const DefaultOptionsToken = new InjectionToken('DEFAULTOPTIONSTOKEN');
 
 const KEY_CONFIG = 'http';
 
