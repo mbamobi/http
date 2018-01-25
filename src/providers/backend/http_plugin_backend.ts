@@ -37,7 +37,7 @@ export class HttpPluginConnection implements Connection {
 
       this.events.preRequest(req, responseObserver);
       let promise: any;
-      const headers    = req.headers;
+      const headers = req.headers;
       let headersSerialize = {};
       headers.forEach((value: any, index: string) => {
         value = value.filter((valueFilter: any) => {
@@ -91,7 +91,7 @@ export class HttpPluginConnection implements Connection {
       promise.then((data: any) => {
         const status = data.status;
         objectDebug.headersResponse = data.headers;
-        objectDebug.body   = data.data;
+        objectDebug.body = data.data;
         objectDebug.status = status;
 
         console.log('Debug success: ', objectDebug);
@@ -128,8 +128,8 @@ export class HttpPluginConnection implements Connection {
         }
       }).catch((error: any) => {
         const status = error.status;
-        objectDebug.status     = status;
-        objectDebug.body       = error.error;
+        objectDebug.status = status;
+        objectDebug.body = error.error;
         objectDebug.statusText = '';
 
         console.log('Debug error: ', objectDebug);
@@ -158,7 +158,7 @@ export class HttpPluginConnection implements Connection {
     });
   }
 
-  transformParemeters(): { [key: string]: any } {
+  transformParemeters(): { [key: string]: any } | any {
     let paramsResult: { [key: string]: any } = {};
 
     // transform query string in object ex: x=1&y=2 = {x: 1, y: 2}
@@ -171,12 +171,16 @@ export class HttpPluginConnection implements Connection {
       }
     }
 
+    if (typeof body === 'string') {
+      return body;
+    }
+
     try {
       return JSON.parse(body);
     } catch (e) {
       const params: string[] = body.split('&');
       for (const param of params) {
-        const [ key, value ] = param.split('=');
+        const [key, value] = param.split('=');
         paramsResult[key] = value;
       }
 
@@ -188,8 +192,8 @@ export class HttpPluginConnection implements Connection {
 @Injectable()
 export class HttpPluginBackend implements ConnectionBackend {
   constructor(
-      private pluginHttp: HTTP,
-      private events: HttpEvents) {}
+    private pluginHttp: HTTP,
+    private events: HttpEvents) { }
 
   createConnection(request: Request): HttpPluginConnection {
     return new HttpPluginConnection(request, this.pluginHttp, this.events);
