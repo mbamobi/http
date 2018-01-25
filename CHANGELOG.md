@@ -1,3 +1,13 @@
+<a name="4.1.1"></a>
+## [4.1.1](https://github.com/mbamobi/http/compare/v4.1.0...v4.1.1) (2018-01-25)
+
+
+### Bug Fixes
+
+* **http-plugin:** ajuste body para content type json ([299d300](https://github.com/mbamobi/http/commit/299d300))
+
+
+
 <a name="4.1.0"></a>
 # [4.1.0](https://github.com/mbamobi/http/compare/v4.0.0...v4.1.0) (2018-01-25)
 
