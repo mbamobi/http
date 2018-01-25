@@ -1,5 +1,5 @@
-import { HttpEvents } from '../backend/utils';
 import { Injectable, InjectionToken, Optional } from '@angular/core';
+import { HttpEvents } from '../backend/utils';
 import { Plugin } from './plugin';
 
 export const HttpPluginsToken = new InjectionToken('HTTP_PLUGINS');
