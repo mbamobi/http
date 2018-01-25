@@ -176,8 +176,7 @@ export class HttpPluginConnection implements Connection {
       if (contentType === 'application/json') {
         try {
             return JSON.parse(body);
-        }
-        catch (e) {
+        } catch (e) {
             return body;
         }
       } else return body;
