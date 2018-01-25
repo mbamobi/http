@@ -1,3 +1,42 @@
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/mbamobi/http/compare/v4.0.0...v4.1.0) (2018-01-25)
+
+Adicionado plugin para utilização do plugin cordova 
+[cordova-plugin-advanced-http](https://github.com/silkimen/cordova-plugin-advanced-http)
+com suporte à feature de SSL Pinning.
+
+
+### Bug Fixes
+
+* force parse object ([5b1bfe6](https://github.com/mbamobi/http/commit/5b1bfe6))
+* **backend:** cordova plugin http data serializer ([41440e2](https://github.com/mbamobi/http/commit/41440e2))
+* **backend:** create object Headers return object headers cordova plugin ([02c3121](https://github.com/mbamobi/http/commit/02c3121))
+* **backend:** fix serialize header invalid to plugin http cordova ([f2ca921](https://github.com/mbamobi/http/commit/f2ca921))
+* **backend:** force json parse body how string ([5ae3967](https://github.com/mbamobi/http/commit/5ae3967))
+* **backend:** no transform parameters in case of object ([70b4efb](https://github.com/mbamobi/http/commit/70b4efb))
+* **backend:** order get json headers because before assign origin ([b804a06](https://github.com/mbamobi/http/commit/b804a06))
+* **backend:** serialize headers send ([1ddad53](https://github.com/mbamobi/http/commit/1ddad53))
+* **backend:** typo name header backend cordova plugin ([3c08fdf](https://github.com/mbamobi/http/commit/3c08fdf))
+* **backend:** workaround assign header Origin ([0fd8f7e](https://github.com/mbamobi/http/commit/0fd8f7e))
+* **http:** fix force delete params case use url-resolver ([91d7c46](https://github.com/mbamobi/http/commit/91d7c46))
+* **http:** fix params get in case not used url resolver ([2587e28](https://github.com/mbamobi/http/commit/2587e28))
+* **httpPluginBackend:** fix return error plugin ([5f0e096](https://github.com/mbamobi/http/commit/5f0e096))
+* **module:** fix typo module name ([788f4da](https://github.com/mbamobi/http/commit/788f4da))
+* **plugins:** ajuste imports (lint) ([0022667](https://github.com/mbamobi/http/commit/0022667))
+* **timeout:** add throw timeout error ([963053b](https://github.com/mbamobi/http/commit/963053b))
+
+
+### Features
+
+* **backend:** add headers requests http plugin ([b9154fc](https://github.com/mbamobi/http/commit/b9154fc))
+* **backend:** cordova plugin http debug with console ([e9f519c](https://github.com/mbamobi/http/commit/e9f519c))
+* **backend:** http plugin pinning dispatch observable with promise ([ae8743c](https://github.com/mbamobi/http/commit/ae8743c))
+* **backend:** serialize parameters cordova plugin ([ce43a28](https://github.com/mbamobi/http/commit/ce43a28))
+* **http-plugin:** support text body ([6c06bba](https://github.com/mbamobi/http/commit/6c06bba))
+* **module:** implementation cordova plugin module ([f4c8016](https://github.com/mbamobi/http/commit/f4c8016))
+
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/mbamobi/http/compare/5.0.0...4.0.0) (2017-12-04)
 
