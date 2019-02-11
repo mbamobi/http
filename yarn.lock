@@ -51,6 +51,11 @@
   dependencies:
     tsickle "^0.21.0"
 
+"@ionic-native/core@^4.0.0":
+  version "4.20.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/core/-/core-4.20.0.tgz#5877f45136add6f04a4d744012d1fcdc3f634774"
+  integrity sha512-8ppRT4zXKwtalv9HJomLQjDnMfPAiKdNUQSSKpwZePmI+8TpYRL7UNr0o0hmjiTXx1oGcKQFzHpDc1M2yeR3BA==
+
 "@ionic-native/http@^4.0.0":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@ionic-native/http/-/http-4.2.1.tgz#a919900a8a007646ca6db58989bbe62d7712286f"
@@ -2406,9 +2411,14 @@ typedoc@^0.5.1:
     typedoc-default-themes "^0.4.2"
     typescript "2.2.2"
 
-typescript@2.2.2, typescript@~2.2.1:
+typescript@2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.2.2.tgz#606022508479b55ffa368b58fee963a03dfd7b0c"
+
+typescript@^2.4.1:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
+  integrity sha512-Gr4p6nFNaoufRIY4NMdpQRNmgxVIGMs4Fcu/ujdYk3nAZqk7supzBE9idmvfZIlH/Cuj//dvi+019qEue9lV0w==
 
 uglify-js@^2.6:
   version "2.8.21"
