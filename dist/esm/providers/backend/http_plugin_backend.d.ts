@@ -16,6 +16,7 @@ export declare class HttpPluginConnection implements Connection {
 export declare class HttpPluginBackend implements ConnectionBackend {
     private pluginHttp;
     private events;
+    private redirectDisabled;
     constructor(pluginHttp: HTTP, events: HttpEvents);
     createConnection(request: Request): HttpPluginConnection;
 }

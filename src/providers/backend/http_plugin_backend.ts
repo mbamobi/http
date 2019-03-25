@@ -32,7 +32,7 @@ export class HttpPluginConnection implements Connection {
   constructor(req: Request, pluginHttp: HTTP, private events?: HttpEvents) {
     this.request = req;
     // implement observable with promise
-    this.response = new Observable<Response>((responseObserver: Observer<Response>) => {
+    const buildResponse = (req: Request) => new Observable<Response>((responseObserver: Observer<Response>) => {
       const method = RequestMethod[req.method].toUpperCase();
 
       this.events.preRequest(req, responseObserver);
@@ -128,6 +128,18 @@ export class HttpPluginConnection implements Connection {
         }
       }).catch((error: any) => {
         const status = error.status;
+
+        // cordova-plugin-advanced-http perde cookies quando ocorre redirecionamento;
+        // fazemos nosso próprio tratamento manual de redirect então, que já faz
+        // com que os cookies sejam devidamente tratados
+        // https://github.com/silkimen/cordova-plugin-advanced-http/issues/148
+        if (status > 300 && status < 400 && error.headers['location']) {
+          let newRequest = new Request(req);
+          newRequest.url = new URL(error.headers['location'], req.url).toString();
+          buildResponse(newRequest).subscribe(responseObserver);
+          return;
+        }
+
         objectDebug.status     = status;
         objectDebug.body       = error.data;
         objectDebug.statusText = error.error;
@@ -156,6 +168,7 @@ export class HttpPluginConnection implements Connection {
         }
       });
     });
+    this.response = buildResponse(req);
   }
 
   transformParemeters(): { [key: string]: any } {
@@ -187,11 +200,18 @@ export class HttpPluginConnection implements Connection {
 
 @Injectable()
 export class HttpPluginBackend implements ConnectionBackend {
+  private redirectDisabled = false;
+
   constructor(
       private pluginHttp: HTTP,
       private events: HttpEvents) {}
 
   createConnection(request: Request): HttpPluginConnection {
+    if (!this.redirectDisabled) {
+      // Tratar redirects manualmente para preservar cookies
+      this.pluginHttp.disableRedirect(true);
+      this.redirectDisabled = true;
+    }
     return new HttpPluginConnection(request, this.pluginHttp, this.events);
   }
 }

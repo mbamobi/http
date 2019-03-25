@@ -23,7 +23,7 @@
             var _this = this;
             this.events = events;
             this.request = req;
-            this.response = new Observable_1.Observable(function (responseObserver) {
+            var buildResponse = function (req) { return new Observable_1.Observable(function (responseObserver) {
                 var method = http_1.RequestMethod[req.method].toUpperCase();
                 _this.events.preRequest(req, responseObserver);
                 var promise;
@@ -112,6 +112,12 @@
                     }
                 }).catch(function (error) {
                     var status = error.status;
+                    if (status > 300 && status < 400 && error.headers['location']) {
+                        var newRequest = new http_1.Request(req);
+                        newRequest.url = new URL(error.headers['location'], req.url).toString();
+                        buildResponse(newRequest).subscribe(responseObserver);
+                        return;
+                    }
                     objectDebug.status = status;
                     objectDebug.body = error.data;
                     objectDebug.statusText = error.error;
@@ -136,7 +142,8 @@
                         throw exception;
                     }
                 });
-            });
+            }); };
+            this.response = buildResponse(req);
         }
         HttpPluginConnection.prototype.transformParemeters = function () {
             var paramsResult = {};
@@ -169,8 +176,13 @@
         function HttpPluginBackend(pluginHttp, events) {
             this.pluginHttp = pluginHttp;
             this.events = events;
+            this.redirectDisabled = false;
         }
         HttpPluginBackend.prototype.createConnection = function (request) {
+            if (!this.redirectDisabled) {
+                this.pluginHttp.disableRedirect(true);
+                this.redirectDisabled = true;
+            }
             return new HttpPluginConnection(request, this.pluginHttp, this.events);
         };
         HttpPluginBackend.decorators = [

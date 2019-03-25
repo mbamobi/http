@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, RequestMethod, Response, ResponseOptions, ResponseType } from '@angular/http';
+import { Headers, Request, RequestMethod, Response, ResponseOptions, ResponseType } from '@angular/http';
 import { HTTP } from '@ionic-native/http';
 import { Observable } from 'rxjs/Observable';
 import { HttpEvents, isSuccess } from './utils';
@@ -11,7 +11,7 @@ var HttpPluginConnection = (function () {
         var _this = this;
         this.events = events;
         this.request = req;
-        this.response = new Observable(function (responseObserver) {
+        var buildResponse = function (req) { return new Observable(function (responseObserver) {
             var method = RequestMethod[req.method].toUpperCase();
             _this.events.preRequest(req, responseObserver);
             var promise;
@@ -100,6 +100,12 @@ var HttpPluginConnection = (function () {
                 }
             }).catch(function (error) {
                 var status = error.status;
+                if (status > 300 && status < 400 && error.headers['location']) {
+                    var newRequest = new Request(req);
+                    newRequest.url = new URL(error.headers['location'], req.url).toString();
+                    buildResponse(newRequest).subscribe(responseObserver);
+                    return;
+                }
                 objectDebug.status = status;
                 objectDebug.body = error.data;
                 objectDebug.statusText = error.error;
@@ -124,7 +130,8 @@ var HttpPluginConnection = (function () {
                     throw exception;
                 }
             });
-        });
+        }); };
+        this.response = buildResponse(req);
     }
     HttpPluginConnection.prototype.transformParemeters = function () {
         var paramsResult = {};
@@ -157,8 +164,13 @@ var HttpPluginBackend = (function () {
     function HttpPluginBackend(pluginHttp, events) {
         this.pluginHttp = pluginHttp;
         this.events = events;
+        this.redirectDisabled = false;
     }
     HttpPluginBackend.prototype.createConnection = function (request) {
+        if (!this.redirectDisabled) {
+            this.pluginHttp.disableRedirect(true);
+            this.redirectDisabled = true;
+        }
         return new HttpPluginConnection(request, this.pluginHttp, this.events);
     };
     HttpPluginBackend.decorators = [
